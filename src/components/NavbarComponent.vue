@@ -80,7 +80,7 @@
             <div class="flex space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <router-link
-                :to="'/dashboard'"
+                :to="{ name: 'dashboard' }"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 aria-current="page"
                 >Dashboard</router-link
@@ -92,13 +92,13 @@
           class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
         >
           <router-link
-            :to="'/login'"
+            :to="{ name: 'login' }"
             class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             aria-current="page"
             >Login</router-link
           >
           <router-link
-            :to="'/register'"
+            :to="{ name: 'register' }"
             class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             aria-current="page"
             >Register</router-link
@@ -204,7 +204,7 @@
       <div class="px-2 pt-2 pb-3 space-y-1">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
         <router-link
-          :to="'/dashboard'"
+          :to="{ name: 'dashboard' }"
           class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
           aria-current="page"
           >Dashboard
