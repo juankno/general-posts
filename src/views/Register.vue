@@ -69,6 +69,24 @@
               placeholder="Password"
             />
           </div>
+
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="password_confirmation"
+            >
+              Confirm the password
+            </label>
+            <input
+              id="password_confirmation"
+              name="password_confirmation"
+              type="password"
+              autocomplete="password_confirmation"
+              required
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="Confirm the password"
+            />
+          </div>
         </div>
 
         <div class="flex items-center justify-between">
