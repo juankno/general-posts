@@ -15,7 +15,8 @@ export default createStore({
     },
   },
   actions: {
-    register(credentials) {
+    // eslint-disable-next-line no-unused-vars
+    register({ commit }, credentials) {
       return axios
         .post(
           "http://blog-authenticated.herokuapp.com/api/v1/signup",
@@ -23,6 +24,9 @@ export default createStore({
         )
         .then(({ data }) => {
           console.log("User data is ", data);
+        })
+        .catch((err) => {
+          console.log(err.response.data);
         });
     },
 
@@ -35,8 +39,15 @@ export default createStore({
         .then(({ data }) => {
           commit("SET_USER_DATA", data);
           console.log("User data is ", data);
+        })
+        .catch((err) => {
+          console.log(err.response.data);
         });
     },
   },
-  modules: {},
+  getters: {
+    loggedIn(state) {
+      return !!state.user;
+    },
+  },
 });
