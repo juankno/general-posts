@@ -13,7 +13,7 @@
           Sign in to your account
         </h2>
       </div>
-      <form class="mt-8 space-y-6" action="#" method="POST">
+      <form class="mt-8 space-y-6" @submit.prevent="login">
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm -space-y-px">
           <div class="mb-4">
@@ -25,6 +25,7 @@
             </label>
             <input
               id="email-address"
+              v-model="email"
               name="email"
               type="email"
               autocomplete="email"
@@ -42,6 +43,7 @@
             </label>
             <input
               id="password"
+              v-model="password"
               name="password"
               type="password"
               autocomplete="current-password"
@@ -55,12 +57,13 @@
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <input
-              id="remember-me"
-              name="remember-me"
+              id="remember"
+              v-model="remember"
+              name="remember"
               type="checkbox"
               class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
             />
-            <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+            <label for="remember" class="ml-2 block text-sm text-gray-900">
               Remember me
             </label>
           </div>
@@ -116,6 +119,27 @@
 <script>
 export default {
   name: "Login",
+  data() {
+    return {
+      email: "",
+      password: "",
+      remember: "",
+    };
+  },
+
+  methods: {
+    login() {
+      this.$store
+        .dispatch("login", {
+          email: this.email,
+          password: this.password,
+          remember: this.remember,
+        })
+        .then(() => {
+          this.$router.push({ name: "dashboard" });
+        });
+    },
+  },
 };
 </script>
 

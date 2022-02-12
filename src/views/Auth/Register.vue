@@ -13,7 +13,7 @@
           Create your account
         </h2>
       </div>
-      <form class="mt-8 space-y-6" action="#" method="POST">
+      <form class="mt-8 space-y-6" @submit.prevent="register">
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm">
           <div class="mb-4">
@@ -25,6 +25,7 @@
             </label>
             <input
               id="name"
+              v-model="name"
               name="name"
               type="text"
               autocomplete="name"
@@ -43,6 +44,7 @@
             </label>
             <input
               id="email-address"
+              v-model="email"
               name="email"
               type="email"
               autocomplete="email"
@@ -61,6 +63,7 @@
             </label>
             <input
               id="password"
+              v-model="password"
               name="password"
               type="password"
               autocomplete="current-password"
@@ -79,6 +82,7 @@
             </label>
             <input
               id="password_confirmation"
+              v-model="password_confirmation"
               name="password_confirmation"
               type="password"
               autocomplete="password_confirmation"
@@ -132,6 +136,24 @@
 <script>
 export default {
   name: "Register",
+  data() {
+    return {
+      email: "",
+      name: "",
+      password: "",
+      password_confirmation: "",
+    };
+  },
+  methods: {
+    register() {
+      this.$store.dispatch("register", {
+        email: this.email,
+        name: this.name,
+        password: this.password,
+        password_confirmation: this.password_confirmation,
+      });
+    },
+  },
 };
 </script>
 
