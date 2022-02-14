@@ -6,7 +6,6 @@ import Dashboard from "@/views/Dashboard";
 const routes = [
   {
     path: "/",
-    name: "login",
     component: Login,
   },
   {
