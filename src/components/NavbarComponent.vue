@@ -63,7 +63,7 @@
           class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex-shrink-0 flex items-center">
-            <router-link :to="{ name: 'login' }">
+            <router-link :to="{ name: 'home' }">
               <img
                 class="block lg:hidden h-8 w-auto"
                 src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
@@ -97,13 +97,13 @@
               :to="{ name: 'login' }"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               aria-current="page"
-              >Login</router-link
+              >Sign in</router-link
             >
             <router-link
               :to="{ name: 'register' }"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               aria-current="page"
-              >Register</router-link
+              >Sign up</router-link
             >
           </div>
           <div v-if="loggedIn" class="flex items-center">
