@@ -41,7 +41,6 @@ export default createStore({
         )
         .then(({ data }) => {
           commit("SET_USER_DATA", data);
-          console.log("User data is ", data);
         })
         .catch((err) => {
           console.log(err.response.data);
@@ -49,7 +48,15 @@ export default createStore({
     },
 
     logout({ commit }) {
-      commit("CLEAR_USER_DATA");
+      return axios
+        .post("http://blog-authenticated.herokuapp.com/api/v1/logout")
+        .then(({ message }) => {
+          commit("CLEAR_USER_DATA");
+        })
+        .catch((err) => {
+          commit("CLEAR_USER_DATA");
+          console.log(err.response.data);
+        });
     },
   },
   getters: {

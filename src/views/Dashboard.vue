@@ -24,7 +24,6 @@ export default {
       .get("http://blog-authenticated.herokuapp.com/api/v1/posts")
       .then(({ data }) => {
         this.posts = data.data;
-        console.log(data.data);
       })
       .catch((error) => {
         console.log(error.response.data);
