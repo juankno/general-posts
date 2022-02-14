@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createStore } from "vuex";
 import axios from "axios";
 
@@ -20,15 +21,13 @@ export default createStore({
     },
   },
   actions: {
-    register(credentials) {
+    register({ commit }, credentials) {
       return axios
         .post(
           "http://blog-authenticated.herokuapp.com/api/v1/signup",
           credentials
         )
-        .then(({ data }) => {
-          console.log("User data is ", data);
-        })
+        .then(({ data }) => data)
         .catch((err) => {
           console.log(err.response.data);
         });

@@ -12,6 +12,30 @@
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Create your account
         </h2>
+        <div
+          v-if="message"
+          class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+          role="alert"
+        >
+          <div class="flex">
+            <div class="py-1">
+              <svg
+                class="fill-current h-6 w-6 text-teal-500 mr-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm">
+                {{ message }}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       <form class="mt-8 space-y-6" @submit.prevent="register">
         <input type="hidden" name="remember" value="true" />
@@ -25,7 +49,7 @@
             </label>
             <input
               id="name"
-              v-model="name"
+              v-model="user.name"
               name="name"
               type="text"
               autocomplete="name"
@@ -44,7 +68,7 @@
             </label>
             <input
               id="email-address"
-              v-model="email"
+              v-model="user.email"
               name="email"
               type="email"
               autocomplete="email"
@@ -63,7 +87,7 @@
             </label>
             <input
               id="password"
-              v-model="password"
+              v-model="user.password"
               name="password"
               type="password"
               autocomplete="current-password"
@@ -82,7 +106,7 @@
             </label>
             <input
               id="password_confirmation"
-              v-model="password_confirmation"
+              v-model="user.password_confirmation"
               name="password_confirmation"
               type="password"
               autocomplete="password_confirmation"
@@ -138,19 +162,20 @@ export default {
   name: "Register",
   data() {
     return {
-      email: "",
-      name: "",
-      password: "",
-      password_confirmation: "",
+      message: null,
+      user: {
+        email: "",
+        name: "",
+        password: "",
+        password_confirmation: "",
+      },
     };
   },
   methods: {
     register() {
-      this.$store.dispatch("register", {
-        email: this.email,
-        name: this.name,
-        password: this.password,
-        password_confirmation: this.password_confirmation,
+      this.$store.dispatch("register", this.user).then(({ message }) => {
+        this.message = message;
+        this.user = {};
       });
     },
   },
