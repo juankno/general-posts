@@ -1,15 +1,14 @@
 <template>
-  <div class="dashboard">
-    <h1>Dashboard page</h1>
-
-    <div class="flex flex-center">
-      <pre>{{ posts }}</pre>
+  <div class="container mx-auto mt-5">
+    <div class="grid grid-cols-3 gap-4">
+      <post-item-component v-for="post in posts" :key="post.id" :post="post" />
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import PostItemComponent from "@/components/PostItemComponent";
 
 export default {
   name: "Dashboard",
@@ -18,7 +17,7 @@ export default {
       posts: [],
     };
   },
-  components: {},
+  components: { PostItemComponent },
   created() {
     axios
       .get("http://blog-authenticated.herokuapp.com/api/v1/posts")
