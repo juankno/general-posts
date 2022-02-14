@@ -13,10 +13,14 @@ export default createStore({
         "Authorization"
       ] = `${userData.token_type} ${userData.access_token}`;
     },
+
+    CLEAR_USER_DATA() {
+      localStorage.removeItem("user");
+      location.reload();
+    },
   },
   actions: {
-    // eslint-disable-next-line no-unused-vars
-    register({ commit }, credentials) {
+    register(credentials) {
       return axios
         .post(
           "http://blog-authenticated.herokuapp.com/api/v1/signup",
@@ -43,6 +47,10 @@ export default createStore({
         .catch((err) => {
           console.log(err.response.data);
         });
+    },
+
+    logout({ commit }) {
+      commit("CLEAR_USER_DATA");
     },
   },
   getters: {

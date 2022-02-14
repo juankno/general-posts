@@ -80,6 +80,7 @@
             <div class="flex space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <router-link
+                v-if="loggedIn"
                 :to="{ name: 'dashboard' }"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 aria-current="page"
@@ -184,14 +185,15 @@
                   id="user-menu-item-1"
                   >Settings</a
                 >
-                <a
-                  href="#"
+                <button
+                  @click="logout"
                   class="block px-4 py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabindex="-1"
                   id="user-menu-item-2"
-                  >Sign out</a
                 >
+                  Sign out
+                </button>
               </div>
             </div>
           </div>
@@ -230,6 +232,10 @@ export default {
     };
   },
 
+  computed: {
+    ...authComputed,
+  },
+
   methods: {
     toggleUserMenu() {
       this.openUserMenu = !this.openUserMenu;
@@ -237,10 +243,9 @@ export default {
     toggleResponsiveMenu() {
       this.openResponsiveMenu = !this.openResponsiveMenu;
     },
-  },
-
-  computed: {
-    ...authComputed,
+    logout() {
+      this.$store.dispatch("logout");
+    },
   },
 };
 </script>
